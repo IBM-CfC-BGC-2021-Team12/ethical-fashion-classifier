@@ -8,6 +8,14 @@ This repository contains Python scripts that
 
 Note that these scripts are written to be as understandable as possible for a beginner programmer.  They do not factor repeated code into reusable functions, they use several intermediate variables to make processes clearer, they do not guard against execution on module import (`if __name__=='__main__'`), or use any unnecessary Python features.  Modifying these scripts to make them more [Pythonic](https://docs.python-guide.org/writing/style/) could be a fun project for an intermediate Pythonista. :)
 
+## Text Classification
+
+Text classification is a supervised learning problem where the input is a text document (e.g., a web page), and the output is some category to which the text document belongs.
+
+For our application, the text documents will be the web pages of fashion brands and the outputs will be `{ETHICAL, UNETHICAL}`.
+
+For additional background written at an introductory level, see [Machine Learning](machine-learning.md)
+
 ## Requirements
 
 To use these scripts you need:
@@ -17,6 +25,8 @@ To use these scripts you need:
 - the NLTK library
 - the Beautiful Soup library
 - IBM Watson Python SDK
+
+And, of course, you need the API key and service URL for an [IBM Cloud Natural Language Classifier](https://cloud.ibm.com/catalog/services/natural-language-classifier) instance.
 
 ### How to install
 
@@ -55,13 +65,17 @@ Training set size: 59
 Test set size: 15
 Creating train feature text for https://www.tentree.com/.
 ...
-Creating test feature text for https://www.tentree.com/.
+Creating test feature text for https://www.oysho.com/gb/.
 ```
 
 ## Training the Classifier
 
+Once you have a training data set you can use it to train your classifier with:
+
+> Substitute your own API key and classifier service URL for <apikey> and <service-url>.
+
 ```
-python3 train_classifier.py <apikey> <classifer-url> <training-data-file>
+python3 train_classifier.py <apikey> <classifer-url> fashion-brands-train.csv
 ```
 
 You should get an output something like:
@@ -79,7 +93,7 @@ Wrote classifer JSON data to classifier.json
 }
 ```
 
-You can test/update the status of the classifier with:
+Training will take a few minutes (typically < 10).  You can query the status of the classifier (and update the `classifier.json` file produced when training was started) with:
 
 ```
 python3 update_status.py <apikey>
@@ -115,8 +129,10 @@ Updated classifer status:
 
 ## Testing the Classifier
 
+Once you've trained the classifier and it's available, you can test its performance using the test set created by above by running `test_classifier.py`:
+
 ```
-python3 test_classifier.py <apikey> <test-data-set>
+python3 test_classifier.py <apikey> fashion-brands-test.csv
 ```
 
 Once it finishes querying the classifier for each case in your test set, it should print a report like:
@@ -125,7 +141,7 @@ Once it finishes querying the classifier for each case in your test set, it shou
 Error rate on fashion-brands-test.csv: 0.2 (3/15).
 ```
 
-The error rate shown above is the test error on `fashion-brands-test.csv` for a classifer trained with `fashion-brands-train.csv`.  Yes, with minimal preprocessing the classifier achieves an 80% accuracy rate!
+The error rate shown above is the test error on `fashion-brands-test.csv` for a classifier trained with `fashion-brands-train.csv`.  Yes, with minimal preprocessing the classifier achieves an 80% accuracy rate!
 
 ## Querying the Classifier With an Unseen Fashion Brand
 
