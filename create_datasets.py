@@ -98,6 +98,13 @@ index_unethical_80percent = int(len(unethical_brands) * .8)
 print(f"Ethical data 80% train/test split index: {index_ethical_80percent}.")
 print(f"Unethical data 80% train/test split index: {index_unethical_80percent}.")
 
+training_set_size = len(ethical_brands[:index_ethical_80percent]) + \
+    len(unethical_brands[:index_unethical_80percent])
+test_set_zise = len(ethical_brands) + len(unethical_brands) - training_set_size
+
+print(f"Training set size: {training_set_size}")
+print(f"Test set size: {test_set_zise}")
+
 for url in ethical_brands[:index_ethical_80percent]:
     print(f"Creating train feature text for {url}.")
     resp = requests.get(url)
