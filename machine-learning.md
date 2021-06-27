@@ -7,13 +7,17 @@ A machine learning program is a program that improves its performance on task `T
 
 So a machine learning problem is defined by the three items: task (`T`), performance measure (`P`) and experience (`E`).  For example:
 
-`T`: Classify tumors as malignant or benign
-`P`: Percentage of correctly classified tumors
-`E`: Database of attributes (a.k.a. “features”) of breast cancer cases (e.g., tumor size and patient age) labelled with malignant or benign
+- `T`: Classify tumors as malignant or benign
+- `P`: Percentage of correctly classified tumors
+- `E`: Database of attributes (a.k.a. “features”) of breast cancer cases (e.g., tumor size and patient age) labelled with malignant or benign
 
 The database of cases is usually called a “training data” set.
 
-Classification is a kind of supervised learning task in which an instance of a phenomenon (in this example, a person of a particular age with a tumor of a particular size) is classified into one of a fixed number of categories, in this example “malignant” or “benign.”
+One way to think of machine learning programs versus traditional programs is that in traditional programs the programmer writes the logic that transform the program's input to the desired output.  In a machine learning program the programmer chooses an algorithm and appropriate data for the task, and the algorithm (itself implemented in a program) uses the data to "write" a custom program for the task.  Pictorially (read "Data" as "Input"):
+
+![Traditional Program vs Machine Learning Program](program-box-diagram.png)
+
+Classification is a kind of supervised learning task in which an instance of a phenomenon (in our running example, a person of a particular age with a tumor of a particular size) is classified into one of a fixed number of categories, in this example “malignant” or “benign.”  A classifier is a function whose inputs are query instances and outputs are categories.  A machine learning program uses the data to "learn" an approximation of this function.
 
 “Supervised” just means the learner has training data labelled with answers.  During the training phase, a classifier reads the training data and identifies patterns in the data that it uses to classify other instances.
 
