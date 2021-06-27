@@ -59,8 +59,8 @@ The 1024 character limit is a constraint of IBM Cloud Natural Language Classifie
 The `create_datasets.py` script takes a few minutes to run, since it's fetching the text of the web pages for every URL in its list of ethical an unethical fashion brands (as of this writing, 74 web pages).  The output will look something like:
 
 ```
-Training set size: 59, 31 ETHICAL, 28 UNETHICAL, 0.53 / 0.47.
-Test set size: 15, 8 ETHICAL, 7 UNETHICAL, 0.53 / 0.47.
+Training set size: 59, 31 ETHICAL (0.53), 28 UNETHICAL (0.47)
+Test set size: 15, 8 ETHICAL (0.53), 7 UNETHICAL (0.47)
 Creating train feature text for https://www.tentree.com/.
 ...
 Creating test feature text for https://www.oysho.com/gb/.
@@ -145,4 +145,4 @@ The error rate shown above is the test error on `fashion-brands-test.csv` for a 
 
 The whole point of this training and testing is to create a system that allows a fashion shopper to get an assessment of the ethical status of an arbitrary fashion brand.  The training phase produces the predictive model, the testing phase gives us some confidence in the model, the next step is to *use* the model.
 
-This is your task!  By reading the IBM Cloud Natural Language Classifier documentation at https://cloud.ibm.com/docs/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier#getting-started-classify and studying the code in the scripts in this repository (especially `test_classifier.py`) you should be able to write a script that queries the classifier for a prediction of the ethical status of a fashion brand that it was neither trained nor tested on.
+**This is your task!**  By reading the IBM Cloud Natural Language Classifier documentation at https://cloud.ibm.com/docs/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier#getting-started-classify and studying the code in the scripts in this repository (especially `test_classifier.py`) you should be able to write a script that queries the classifier for a prediction of the ethical status of a fashion brand that it was neither trained nor tested on.

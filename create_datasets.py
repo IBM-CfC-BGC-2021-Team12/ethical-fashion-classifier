@@ -106,16 +106,14 @@ test_ethical_proportion = len(ethical_test_set) / test_set_size
 
 print(
     f"Training set size: {training_set_size}, " +
-    f"{len(ethical_training_set)} ETHICAL, " +
-    f"{len(unethical_training_set)} UNETHICAL, " +
-    f"{training_ethical_proportion:.2} / {1.0 - training_ethical_proportion:.2}."
+    f"{len(ethical_training_set)} ETHICAL({training_ethical_proportion:.2}), " +
+    f"{len(unethical_training_set)} UNETHICAL ({1.0 - training_ethical_proportion:.2})"
 )
 
 print(
     f"Test set size: {test_set_size}, " +
-    f"{len(ethical_test_set)} ETHICAL, " +
-    f"{len(unethical_test_set)} UNETHICAL, " +
-    f"{test_ethical_proportion:.2} / {1.0 - test_ethical_proportion:.2}."
+    f"{len(ethical_test_set)} ETHICAL ({test_ethical_proportion:.2}), " +
+    f"{len(unethical_test_set)} UNETHICAL ({1.0 - test_ethical_proportion:.2})"
 )
 
 training_data_file = open("fashion-brands-train.csv", "wt")
