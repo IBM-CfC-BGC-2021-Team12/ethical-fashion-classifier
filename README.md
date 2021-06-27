@@ -146,3 +146,13 @@ The error rate shown above is the test error on `fashion-brands-test.csv` for a 
 The whole point of this training and testing is to create a system that allows a fashion shopper to get an assessment of the ethical status of an arbitrary fashion brand.  The training phase produces the predictive model, the testing phase gives us some confidence in the model, the next step is to *use* the model.
 
 **This is your task!**  By reading the IBM Cloud Natural Language Classifier documentation at https://cloud.ibm.com/docs/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier#getting-started-classify and studying the code in the scripts in this repository (especially `test_classifier.py`) you should be able to write a script that queries the classifier for a prediction of the ethical status of a fashion brand that it was neither trained nor tested on.
+
+## Word Clouds
+
+Just for fun, we also created a script, `extract_words.py`, which extracted words appearing on web sites of ethical and unethical brands, saved in `ethical-words.txt` and `unethical-words.txt`.  To get a feel for the most frequently occurring words in each category, create [word clouds](https://en.wikipedia.org/wiki/Tag_cloud) for each of these word lists.  There are online word cloud generators, but it's fairly simple to create one with Python code using a library such as this one: https://github.com/amueller/word_cloud.  Note that if you use that particular library, you'll need the following dependencies:
+
+```
+pip3 install numpy
+pip3 install pillow
+pip3 install matplotlib
+```
