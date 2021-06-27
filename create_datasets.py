@@ -90,22 +90,37 @@ unethical_brands = [
     "https://www.oysho.com/gb/"
 ]
 
+index_ethical_80percent = int(len(ethical_brands) * .8)
+ethical_training_set = ethical_brands[:index_ethical_80percent]
+ethical_test_set = ethical_brands[index_ethical_80percent:]
+
+index_unethical_80percent = int(len(unethical_brands) * .8)
+unethical_training_set = unethical_brands[:index_unethical_80percent]
+unethical_test_set = unethical_brands[index_unethical_80percent:]
+
+training_set_size = len(ethical_training_set) + len(unethical_training_set)
+test_set_size = len(ethical_test_set) + len(unethical_test_set)
+
+training_ethical_proportion = len(ethical_training_set) / training_set_size
+test_ethical_proportion = len(ethical_test_set) / test_set_size
+
+print(
+    f"Training set size: {training_set_size}, " +
+    f"{len(ethical_training_set)} ETHICAL, " +
+    f"{len(unethical_training_set)} UNETHICAL, " +
+    f"{training_ethical_proportion:.2} / {1.0 - training_ethical_proportion:.2}."
+)
+
+print(
+    f"Test set size: {test_set_size}, " +
+    f"{len(ethical_test_set)} ETHICAL, " +
+    f"{len(unethical_test_set)} UNETHICAL, " +
+    f"{test_ethical_proportion:.2} / {1.0 - test_ethical_proportion:.2}."
+)
+
 training_data_file = open("fashion-brands-train.csv", "wt")
 
-index_ethical_80percent = int(len(ethical_brands) * .8)
-index_unethical_80percent = int(len(unethical_brands) * .8)
-
-print(f"Ethical data 80% train/test split index: {index_ethical_80percent}.")
-print(f"Unethical data 80% train/test split index: {index_unethical_80percent}.")
-
-training_set_size = len(ethical_brands[:index_ethical_80percent]) + \
-    len(unethical_brands[:index_unethical_80percent])
-test_set_zise = len(ethical_brands) + len(unethical_brands) - training_set_size
-
-print(f"Training set size: {training_set_size}")
-print(f"Test set size: {test_set_zise}")
-
-for url in ethical_brands[:index_ethical_80percent]:
+for url in ethical_training_set:
     print(f"Creating train feature text for {url}.")
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -116,7 +131,7 @@ for url in ethical_brands[:index_ethical_80percent]:
     feature_text = alnum_only[:1024]
     training_data_file.write(feature_text + ",ETHICAL\n")
 
-for url in unethical_brands[:index_unethical_80percent]:
+for url in unethical_training_set:
     print(f"Creating train feature text for {url}.")
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -131,7 +146,7 @@ training_data_file.close()
 
 test_data_file = open("fashion-brands-test.csv", "wt")
 
-for url in ethical_brands[index_ethical_80percent:]:
+for url in ethical_test_set:
     print(f"Creating test feature text for {url}.")
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -142,7 +157,7 @@ for url in ethical_brands[index_ethical_80percent:]:
     feature_text = alnum_only[:1024]
     test_data_file.write(feature_text + ",ETHICAL\n")
 
-for url in unethical_brands[index_unethical_80percent:]:
+for url in unethical_test_set:
     print(f"Creating test feature text for {url}.")
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')

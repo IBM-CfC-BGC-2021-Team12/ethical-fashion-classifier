@@ -59,10 +59,8 @@ The 1024 character limit is a constraint of IBM Cloud Natural Language Classifie
 The `create_datasets.py` script takes a few minutes to run, since it's fetching the text of the web pages for every URL in its list of ethical an unethical fashion brands (as of this writing, 74 web pages).  The output will look something like:
 
 ```
-Ethical data 80% train/test split index: 31.
-Unethical data 80% train/test split index: 28.
-Training set size: 59
-Test set size: 15
+Training set size: 59, 31 ETHICAL, 28 UNETHICAL, 0.53 / 0.47.
+Test set size: 15, 8 ETHICAL, 7 UNETHICAL, 0.53 / 0.47.
 Creating train feature text for https://www.tentree.com/.
 ...
 Creating test feature text for https://www.oysho.com/gb/.
