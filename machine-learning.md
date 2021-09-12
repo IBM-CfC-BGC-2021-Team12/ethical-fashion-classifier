@@ -1,6 +1,6 @@
 # Machine Learning
 
-https://cs4641.gitlab.io/slides/intro-ml.pdf
+https://drcs.codes/machine-learning/slides/intro-ml.pdf
 
 
 A machine learning program is a program that improves its performance on task `T` as measured by performance measure `P` in response to experience `E`.
